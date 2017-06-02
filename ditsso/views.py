@@ -13,7 +13,7 @@ class DitSSOAdapter(OAuth2Adapter):
     provider_id = DitSSOProvider.id
     access_token_url = 'https://dev.sso.uktrade.io/oauth2/token/'
     authorize_url = 'https://dev.sso.uktrade.io/oauth2/authorize/'
-    suplier_url = 'https://dev.profile.uktrade.io/api/v1/directory/supplier/'
+    supplier_url = 'https://dev.profile.uktrade.io/api/v1/directory/supplier/'
     profile_url = 'https://dev.sso.uktrade.io/oauth2/user-profile/v1/'
 
     def get_callback_url(self, request, app):
@@ -29,11 +29,11 @@ class DitSSOAdapter(OAuth2Adapter):
         extra_data = resp.json()
 
         headers = {'Authorization': 'Bearer {}'.format(token.token)}
-        resp = requests.get(self.suplier_url,
+        resp = requests.get(self.supplier_url,
                             headers=headers)
         try:
             extra_data.update(resp.json)
-        except Exception as e:
+        except TypeError:
             pass
         login = self.get_provider().sociallogin_from_response(request, extra_data)
         return login

@@ -11,10 +11,6 @@ class DitSSOAccount(ProviderAccount):
     def get_profile_url(self):
         return self.account.extra_data.get('link')
 
-    # def to_str(self):
-    #     default = super(DitSSOAccount, self).to_str()
-    #     return self.account.extra_data.get('email', default)
-
 
 class DitSSOProvider(OAuth2Provider):
     id = 'ditsso'
