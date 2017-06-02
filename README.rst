@@ -4,7 +4,7 @@ DIT sso client
 
 Simple extension to django-allauth to create provider classes for DIT sso using Oauth2
 
-
+----------
 Quickstart
 ----------
 
