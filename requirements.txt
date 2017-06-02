@@ -1,0 +1,2 @@
+django-allauth==>0.32.0
+requests==>2.14.2
