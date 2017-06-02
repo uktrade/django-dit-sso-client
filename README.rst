@@ -14,7 +14,7 @@ Quickstart
         'allauth',
         'allauth.account',
         'allauth.socialaccount',
-        'dit-sso-client',
+        'ditsso',
     ]
 
 2. Include the URLconf in your project urls.py like this::
