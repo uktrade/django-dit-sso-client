@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+dit_sso_client.egg-info/PKG-INFO
+dit_sso_client.egg-info/SOURCES.txt
+dit_sso_client.egg-info/dependency_links.txt
+dit_sso_client.egg-info/top_level.txt
+ditsso/__init__.py
+ditsso/models.py
+ditsso/provider.py
+ditsso/urls.py
+ditsso/views.py
