@@ -11,9 +11,9 @@ from ditsso_internal.provider import DitSSOInternalProvider
 
 class DitSSOInternalAdapter(OAuth2Adapter):
     provider_id = DitSSOInternalProvider.id
-    access_token_url = 'https://staff-sso-staging.herokuapp.com/oauth2/token/'
-    authorize_url = 'https://staff-sso-staging.herokuapp.com/oauth2/authorize/'
-    profile_url = 'https://staff-sso-staging.herokuapp.com/oauth2/user-profile/v1/'
+    access_token_url = 'https://staff-sso-staging.herokuapp.com/o/token/'
+    authorize_url = 'https://staff-sso-staging.herokuapp.com/o/authorize/'
+    profile_url = 'https://staff-sso-staging.herokuapp.com/o/user-profile/v1/'
 
     def get_callback_url(self, request, app):
         callback_url = '/auth/callback'
