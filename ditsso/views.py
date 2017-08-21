@@ -5,16 +5,19 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2CallbackView,
 )
 from allauth.utils import build_absolute_uri
+from django.conf import settings
 
 from ditsso.provider import DitSSOProvider
 
 
 class DitSSOAdapter(OAuth2Adapter):
     provider_id = DitSSOProvider.id
-    access_token_url = 'https://dev.sso.uktrade.io/oauth2/token/'
-    authorize_url = 'https://dev.sso.uktrade.io/oauth2/authorize/'
-    supplier_url = 'https://dev.profile.uktrade.io/api/v1/directory/supplier/'
-    profile_url = 'https://dev.sso.uktrade.io/oauth2/user-profile/v1/'
+    hostname = settings.get('DIT_SSO_HOSTNAME', 'dev.sso.uktrade.io')
+    profile = settings.get('DIT_PROFILE_HOSTNAME', 'dev.profile.uktrade.io')
+    access_token_url = 'https://{hostname}/oauth2/token/'.format(hostname=hostname)
+    authorize_url = 'https://{hostname}/oauth2/authorize/'.format(hostname=hostname)
+    supplier_url = 'https://{profile}/api/v1/directory/supplier/'.format(profile=profile)
+    profile_url = 'https://{hostname}/oauth2/user-profile/v1/'.format(hostname=hostname)
 
     def get_callback_url(self, request, app):
         callback_url = '/auth/callback'

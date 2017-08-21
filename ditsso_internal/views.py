@@ -5,15 +5,17 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2CallbackView,
 )
 from allauth.utils import build_absolute_uri
+from django.conf import settings
 
 from ditsso_internal.provider import DitSSOInternalProvider
 
 
 class DitSSOInternalAdapter(OAuth2Adapter):
     provider_id = DitSSOInternalProvider.id
-    access_token_url = 'https://staff-sso-staging.herokuapp.com/o/token/'
-    authorize_url = 'https://staff-sso-staging.herokuapp.com/o/authorize/'
-    profile_url = 'https://staff-sso-staging.herokuapp.com/o/user-profile/v1/'
+    hostname = settings.get('DIT_SSO_INTERNAL_HOSTNAME', 'staff-sso-staging.herokuapp.com')
+    access_token_url = 'https://{hostname}/o/token/'.format(hostname=hostname)
+    authorize_url = 'https://{hostname}/o/authorize/'.format(hostname=hostname)
+    profile_url = 'https://{hostname}/o/user-profile/v1/'.format(hostname=hostname)
 
     def get_callback_url(self, request, app):
         callback_url = '/auth/callback'
