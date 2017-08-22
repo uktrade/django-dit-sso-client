@@ -12,8 +12,8 @@ from ditsso.provider import DitSSOProvider
 
 class DitSSOAdapter(OAuth2Adapter):
     provider_id = DitSSOProvider.id
-    hostname = settings.DIT_SSO_HOSTNAME or 'dev.sso.uktrade.io'
-    profile = settings.DIT_PROFILE_HOSTNAME or 'dev.profile.uktrade.io'
+    hostname = settings['DIT_SSO_HOSTNAME'] or 'dev.sso.uktrade.io'
+    profile = settings['DIT_PROFILE_HOSTNAME'] or 'dev.profile.uktrade.io'
     access_token_url = 'https://{hostname}/oauth2/token/'.format(hostname=hostname)
     authorize_url = 'https://{hostname}/oauth2/authorize/'.format(hostname=hostname)
     supplier_url = 'https://{profile}/api/v1/directory/supplier/'.format(profile=profile)

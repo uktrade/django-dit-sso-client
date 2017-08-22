@@ -12,7 +12,7 @@ from ditsso_internal.provider import DitSSOInternalProvider
 
 class DitSSOInternalAdapter(OAuth2Adapter):
     provider_id = DitSSOInternalProvider.id
-    hostname = settings.DIT_SSO_INTERNAL_HOSTNAME or 'staff-sso-staging.herokuapp.com'
+    hostname = settings['DIT_SSO_INTERNAL_HOSTNAME'] or 'staff-sso-staging.herokuapp.com'
     access_token_url = 'https://{hostname}/o/token/'.format(hostname=hostname)
     authorize_url = 'https://{hostname}/o/authorize/'.format(hostname=hostname)
     profile_url = 'https://{hostname}/o/user-profile/v1/'.format(hostname=hostname)
