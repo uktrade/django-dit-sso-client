@@ -20,16 +20,6 @@ class DitSSOAdapter(OAuth2Adapter):
     supplier_url = 'https://{profile}/api/v1/directory/supplier/'.format(profile=profile)
     profile_url = 'https://{hostname}/oauth2/user-profile/v1/'.format(hostname=hostname)
 
-    #TODO:  Temporary untill the callback url is fixed in SSO
-    def get_previous_callback_url(self, request, app):
-        return super().get_callback_url(request=request, app=app)
-
-    def get_callback_url(self, request, app):
-        callback_url = '/auth/callback'
-        protocol = self.redirect_uri_protocol
-        return build_absolute_uri(request, callback_url, protocol)
-    # TODO: END
-
     def complete_login(self, request, app, token, **kwargs):
         resp = requests.get(self.profile_url,
                             params={'access_token': token.token,
