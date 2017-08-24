@@ -14,7 +14,7 @@ class DitSSOInternalAdapter(OAuth2Adapter):
     hostname = getattr(settings, 'DIT_SSO_INTERNAL_HOSTNAME', 'staff-sso-staging.herokuapp.com')
     access_token_url = 'https://{hostname}/o/token/'.format(hostname=hostname)
     authorize_url = 'https://{hostname}/o/authorize/'.format(hostname=hostname)
-    profile_url = 'https://{hostname}/o/user-profile/v1/'.format(hostname=hostname)
+    profile_url = 'https://{hostname}/api/v1/user/me/'.format(hostname=hostname)
 
     def complete_login(self, request, app, token, **kwargs):
         resp = requests.get(self.profile_url,

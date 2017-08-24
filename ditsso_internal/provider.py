@@ -4,8 +4,8 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 
 class Scope(object):
-    PROFILE = 'profile'
-
+    READ = 'read'
+    WRITE = 'write'
 
 class DitSSOInternalAccount(ProviderAccount):
     def get_profile_url(self):
@@ -18,7 +18,7 @@ class DitSSOInternalProvider(OAuth2Provider):
     account_class = DitSSOInternalAccount
 
     def get_default_scope(self):
-        return [Scope.PROFILE]
+        return [Scope.READ]
 
     def extract_uid(self, response):
         uid = response['id']
