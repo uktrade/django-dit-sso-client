@@ -21,12 +21,36 @@ class DitSSOInternalProvider(OAuth2Provider):
         return [Scope.READ]
 
     def extract_uid(self, response):
-        uid = response['id']
+        uid = response['email']
         return uid
 
     def extract_email_addresses(self, response):
         email = response.get('email', None)
         return [EmailAddress(email=email, verified=True)]
 
+    def extract_extra_data(self, data):
+        return data
+
+    def extract_common_fields(self, data):
+        common_data = {}
+        first_name = data.get('first_name')
+        if first_name:
+            common_data['first_name'] = first_name
+        last_name = data.get('last_name')
+        if last_name:
+            common_data['last_name'] = last_name
+
+        email = data.get('email')
+        if email:
+            common_data['email'] = email
+
+        username = data.get('username', '.'.join([x for x in [first_name, last_name] if x]))
+        if not username and email:
+            username = email.split('@').pop(0)
+
+        if username:
+            common_data['username'] = username
+
+        return common_data
 
 provider_classes = [DitSSOInternalProvider]
