@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='dit-sso-client',
     version='0.1.2',
-    packages=['ditsso'],
+    packages=['ditsso', 'ditsso_internal'],
     include_package_data=True,
     license='BSD License',  # example license
     description='A simple Django app to integrate with DIT SSO provider.',
